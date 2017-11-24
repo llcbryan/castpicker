@@ -30,8 +30,8 @@ function generateCasts(numCasts: number, unique: boolean): Cast[] {
   return casts;
 }
 
-type Side = 'left' | 'right';
-const Sides: Side[] = [ 'left', 'right' ];
+type Side = 'Left' | 'Right';
+const Sides: Side[] = [ 'Left', 'Right' ];
 
 type Size = 'short' | 'long';
 const Sizes: Size[] = [ 'short', 'short', 'short', 'long', 'long' ];
@@ -40,6 +40,8 @@ type Limb = 'arm' | 'leg';
 const Limbs: Limb[] = [ 'arm', 'leg' ];
 
 type Spica = 'thumb spica' | 'finger spica';
+const ShortArmSpicas: (Spica | null)[] = [ 'thumb spica', 'thumb spica', 'finger spica', null, null ];
+const LongArmSpicas: (Spica | null)[] = [ 'thumb spica', null, null ];
 
 class Cast {
   private static CAST_NAME = 'cast';
@@ -47,11 +49,10 @@ class Cast {
   public constructor(
     private side: Side,
     private size: Size,
-    private limb: Limb,
-    // other fields here
+    private limb: Limb
   ) {}
 
-  private spica: Spica;
+  private spica: Spica | null = null;
 
   public static random(): Cast {
     const c = new Cast(
@@ -59,7 +60,11 @@ class Cast {
       pick(Sizes),
       pick(Limbs)
     );
-    c.spica = 'thumb spica';
+
+    if (c.limb === 'arm') {
+      c.spica = pick((c.size === 'short') ? ShortArmSpicas : LongArmSpicas);
+    }
+
     return c;
   }
 
@@ -68,11 +73,29 @@ class Cast {
   }
 
   public shortName() {
-    return 'short foo';
+    // Short name consists of the first character of each word
+    function initial(str: string) {
+      return str.substr(0, 1);
+    }
+
+    let shortName = initial(this.size) + initial(this.limb);
+    if (this.spica) {
+      let spicaInitials = this.spica.split(' ').map(initial).join('');
+      shortName += spicaInitials;
+    } else {
+      shortName += initial(Cast.CAST_NAME);
+    }
+    return shortName.toUpperCase();
   }
 
   public longName() {
-    return 'long foo';
+    let longName = `${this.size} ${this.limb}`;
+    if (this.spica) {
+      longName = `${longName} ${this.spica}`;
+    } else {
+      longName = `${longName} ${Cast.CAST_NAME}`;
+    }
+    return longName;
   }
 
   public toString() {
