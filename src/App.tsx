@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import { pickCast } from './CastLogic';
 
 import { CastPicker } from './CastPicker';
 
@@ -20,9 +21,8 @@ class App extends React.Component<{}, App.State> {
   }
 
   private pick = () => {
-    const newValue = Math.ceil(Math.random() * 10);
     this.setState(oldState => ({
-      previousResults: [ newValue, ...oldState.previousResults ]
+      previousResults: [ pickCast(), ...oldState.previousResults ]
     }));
   }
 }
