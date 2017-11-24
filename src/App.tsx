@@ -3,23 +3,33 @@ import './App.css';
 
 import { CastPicker } from './CastPicker';
 
-// const logo = require('./logo.svg');
+class App extends React.Component<{}, App.State> {
 
-class App extends React.Component {
-  render() {
-    // return (
-    //   <div className="App">
-    //     <div className="App-header">
-    //       <img src={logo} className="App-logo" alt="logo" />
-    //       <h2>Welcome to React</h2>
-    //     </div>
-    //     <p className="App-intro">
-    //       To get started, edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //   </div>
-    // );
+  constructor(props: CastPicker.Props) {
+    super(props);
+    this.state = { previousResults: [] };
+  }
 
-    return <CastPicker />;
+  public render() {
+    return (
+      <CastPicker
+                results={this.state.previousResults}
+                startPick={this.pick}
+      />
+    );
+  }
+
+  private pick = () => {
+    const newValue = Math.ceil(Math.random() * 10);
+    this.setState(oldState => ({
+      previousResults: [ newValue, ...oldState.previousResults ]
+    }));
+  }
+}
+
+namespace App {
+  export interface State {
+    previousResults: string[];
   }
 }
 
