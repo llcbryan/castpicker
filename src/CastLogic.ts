@@ -1,15 +1,7 @@
 import { sample } from 'lodash-es';
 
-export function pickCast(): string {
-  return Cast.random().toString();
-}
-
-function pick<T>(array: T[]): T {
-  let randomItem = sample(array);
-  if (randomItem === undefined) {
-    throw 'There were no items to pick from!';
-  }
-  return randomItem;
+export function pickCast(): Cast {
+  return Cast.random();
 }
 
 function generateCasts(numCasts: number, unique: boolean): Cast[] {
@@ -30,20 +22,28 @@ function generateCasts(numCasts: number, unique: boolean): Cast[] {
   return casts;
 }
 
-type Side = 'Left' | 'Right';
+function pick<T>(array: T[]): T {
+  let randomItem = sample(array);
+  if (randomItem === undefined) {
+    throw 'There were no items to pick from!';
+  }
+  return randomItem;
+}
+
+export type Side = 'Left' | 'Right';
 const Sides: Side[] = [ 'Left', 'Right' ];
 
-type Size = 'short' | 'long';
+export type Size = 'short' | 'long';
 const Sizes: Size[] = [ 'short', 'short', 'short', 'long', 'long' ];
 
-type Limb = 'arm' | 'leg';
+export type Limb = 'arm' | 'leg';
 const Limbs: Limb[] = [ 'arm', 'leg' ];
 
-type Spica = 'thumb spica' | 'finger spica';
+export type Spica = 'thumb spica' | 'finger spica';
 const ShortArmSpicas: (Spica | null)[] = [ 'thumb spica', 'thumb spica', 'finger spica', null, null ];
 const LongArmSpicas: (Spica | null)[] = [ 'thumb spica', null, null ];
 
-class Cast {
+export class Cast {
   private static CAST_NAME = 'cast';
 
   private spica: Spica | null = null;

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { Cast } from './CastLogic';
+
 export function CastPicker(props: CastPicker.Props) {
   return (
     <div>
@@ -19,19 +21,19 @@ export namespace CastPicker {
 
   export interface Props {
     startPick: () => void;
-    generatedCasts: GeneratedCast[];
+    generatedCasts: GeneratedCastSet[];
   }
 
-  export interface GeneratedCast {
-    name: string;
+  export interface GeneratedCastSet {
+    casts: Cast[];
     key: string;
   }
 }
 
 function ListItem(props: ListItem.Props) {
-  return <li key={props.key}>{props.name}</li>;
+  return <li key={props.key}>{props.casts[0].toString()}</li>;
 }
 
 namespace ListItem {
-  export interface Props extends CastPicker.GeneratedCast { }
+  export interface Props extends CastPicker.GeneratedCastSet { }
 }

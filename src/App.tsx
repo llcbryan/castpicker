@@ -10,7 +10,7 @@ const MAX_RESULTS: number = Infinity;
 // Generate a unique key for array elements
 const nextKey = (() => {
   let _next = 0;
-  return () => _next++;
+  return () => '' + _next++;
 })();
 
 class App extends React.Component<{}, App.State> {
@@ -31,15 +31,15 @@ class App extends React.Component<{}, App.State> {
 
   private pick = () => {
     this.setState(oldState => {
-      let newCast = {
-        name: pickCast(),
+      let nextCasts: CastPicker.GeneratedCastSet = {
+        casts: [ pickCast() ],
         key: nextKey()
       };
-      let newResults = [ newCast, ...oldState.generatedCasts ];
+      let newResults: CastPicker.GeneratedCastSet[] = [ nextCasts, ...oldState.generatedCasts ];
 
       return {
         generatedCasts: newResults.slice(0, MAX_RESULTS)
-      };
+      } as App.State;
     });
   }
 }
@@ -47,7 +47,7 @@ class App extends React.Component<{}, App.State> {
 namespace App {
 
   export interface State {
-    generatedCasts: CastPicker.GeneratedCast[];
+    generatedCasts: CastPicker.GeneratedCastSet[];
   }
 }
 
