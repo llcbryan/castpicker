@@ -3,6 +3,7 @@ import * as React from 'react';
 import './App.css';
 
 import { pickRandomCastSet } from './CastLogic';
+import { CastsListItem } from './CastList';
 import { CastPicker } from './CastPicker';
 
 const MAX_RESULTS: number = Infinity;
@@ -15,7 +16,7 @@ const nextKey = (() => {
 
 class App extends React.Component<{}, App.State> {
 
-  constructor(props: CastPicker.Props) {
+  constructor(props: {}) {
     super(props);
     this.state = { generatedCasts: [] };
   }
@@ -31,11 +32,11 @@ class App extends React.Component<{}, App.State> {
 
   private pick = () => {
     this.setState(oldState => {
-      let nextCasts: CastPicker.GeneratedCastSet = {
+      let nextCasts: CastsListItem = {
         casts: pickRandomCastSet(),
         key: nextKey()
       };
-      let newResults: CastPicker.GeneratedCastSet[] = [ nextCasts, ...oldState.generatedCasts ];
+      let newResults: CastsListItem[] = [ nextCasts, ...oldState.generatedCasts ];
 
       return {
         generatedCasts: newResults.slice(0, MAX_RESULTS)
@@ -47,7 +48,7 @@ class App extends React.Component<{}, App.State> {
 namespace App {
 
   export interface State {
-    generatedCasts: CastPicker.GeneratedCastSet[];
+    generatedCasts: CastsListItem[];
   }
 }
 

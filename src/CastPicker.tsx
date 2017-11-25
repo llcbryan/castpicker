@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Cast } from './Cast';
+import { CastList, CastsListItem } from './CastList';
 
 export function CastPicker(props: CastPicker.Props) {
   return (
@@ -9,9 +9,7 @@ export function CastPicker(props: CastPicker.Props) {
       <button onClick={props.startPick}>Pick</button>
       <div>
         Results:
-        <ul>
-          {props.generatedCasts.map(ListItem)}
-        </ul>
+        <CastList casts={props.generatedCasts} />
       </div>
     </div>
   );
@@ -21,19 +19,6 @@ export namespace CastPicker {
 
   export interface Props {
     startPick: () => void;
-    generatedCasts: GeneratedCastSet[];
+    generatedCasts: CastsListItem[];
   }
-
-  export interface GeneratedCastSet {
-    casts: Cast[];
-    key: string;
-  }
-}
-
-function ListItem(props: ListItem.Props) {
-  return <li key={props.key}>{props.casts[0].toString()}</li>;
-}
-
-namespace ListItem {
-  export interface Props extends CastPicker.GeneratedCastSet { }
 }
