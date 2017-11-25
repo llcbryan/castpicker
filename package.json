@@ -2,14 +2,17 @@
   "name": "castpicker",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://llcbryan.github.io/castpicker",
+  "homepage": "http://llcbryan.github.io/castpicker",
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "lodash-es": "^4.17.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-scripts-ts": "2.8.0"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
