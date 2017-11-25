@@ -1,4 +1,4 @@
-import { sample } from 'lodash-es';
+import sample from 'lodash-es/sample';
 
 export type Side = 'Left' | 'Right';
 const Sides: Side[] = [ 'Left', 'Right' ];
