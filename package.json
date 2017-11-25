@@ -2,7 +2,7 @@
   "name": "castpicker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://llcbryan.github.io/castpicker",
+  "homepage": "http://www.castpicker.com",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "lodash-es": "^4.17.4",
