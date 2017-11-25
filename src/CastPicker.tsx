@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Cast } from './CastLogic';
+import { Cast } from './Cast';
 
 export function CastPicker(props: CastPicker.Props) {
   return (

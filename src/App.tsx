@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './App.css';
 
-import { pickCast } from './CastLogic';
+import { pickRandomCastSet } from './CastLogic';
 import { CastPicker } from './CastPicker';
 
 const MAX_RESULTS: number = Infinity;
@@ -32,7 +32,7 @@ class App extends React.Component<{}, App.State> {
   private pick = () => {
     this.setState(oldState => {
       let nextCasts: CastPicker.GeneratedCastSet = {
-        casts: [ pickCast() ],
+        casts: pickRandomCastSet(),
         key: nextKey()
       };
       let newResults: CastPicker.GeneratedCastSet[] = [ nextCasts, ...oldState.generatedCasts ];
