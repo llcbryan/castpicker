@@ -19,7 +19,7 @@ function generateCasts(numCasts: number, unique: boolean): Cast[] {
     throw `There are only four limbs; cannot generate ${numCasts} unique casts.`;
   }
 
-  while(casts.length < numCasts) {
+  while (casts.length < numCasts) {
     let newCast = Cast.random();
     let overlappingLimb = casts.some(c => newCast.isSameLimb(c));
     if (!unique || !overlappingLimb) {
@@ -46,12 +46,6 @@ const LongArmSpicas: (Spica | null)[] = [ 'thumb spica', null, null ];
 class Cast {
   private static CAST_NAME = 'cast';
 
-  public constructor(
-    private side: Side,
-    private size: Size,
-    private limb: Limb
-  ) {}
-
   private spica: Spica | null = null;
 
   public static random(): Cast {
@@ -67,6 +61,12 @@ class Cast {
 
     return c;
   }
+
+  public constructor(
+    private side: Side,
+    private size: Size,
+    private limb: Limb
+  ) {}
 
   public isSameLimb(other: Cast) {
     return this.side === other.side && this.limb === other.limb;
