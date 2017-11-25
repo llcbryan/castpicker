@@ -8,7 +8,7 @@ export function CastPicker(props: CastPicker.Props) {
       <div>
         Results:
         <ul>
-          {props.results.map((r, i) => <li key={i}>{r}</li>)}
+          {props.generatedCasts.map(gc => <li key={gc.key}>{gc.name}</li>)}
         </ul>
       </div>
     </div>
@@ -19,6 +19,11 @@ export namespace CastPicker {
 
   export interface Props {
     startPick: () => void;
-    results: string[];
+    generatedCasts: GeneratedCast[];
+  }
+
+  export interface GeneratedCast {
+    name: string;
+    key: string;
   }
 }
