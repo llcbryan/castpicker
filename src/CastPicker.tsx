@@ -8,7 +8,7 @@ export function CastPicker(props: CastPicker.Props) {
       <div>
         Results:
         <ul>
-          {props.generatedCasts.map(gc => <li key={gc.key}>{gc.name}</li>)}
+          {props.generatedCasts.map(ListItem)}
         </ul>
       </div>
     </div>
@@ -26,4 +26,12 @@ export namespace CastPicker {
     name: string;
     key: string;
   }
+}
+
+function ListItem(props: ListItem.Props) {
+  return <li key={props.key}>{props.name}</li>;
+}
+
+namespace ListItem {
+  export interface Props extends CastPicker.GeneratedCast { }
 }
