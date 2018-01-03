@@ -4,7 +4,7 @@ import { Button, Container, Divider, Header } from 'semantic-ui-react';
 import { CastList, CastsListItem } from './CastList';
 
 const FlexContainerStyle: React.CSSProperties = {
-  position: 'absolute',
+  position: 'fixed',
   top: 0,
   bottom: 0,
   left: 0,
