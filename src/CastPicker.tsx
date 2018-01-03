@@ -1,29 +1,45 @@
 import * as React from 'react';
-import { Button, Container, Header } from 'semantic-ui-react';
+import { Button, Container, Divider, Header } from 'semantic-ui-react';
 
 import { CastList, CastsListItem } from './CastList';
 
 const FlexContainerStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
+  flexDirection: 'column',
+  alignItems: 'center',
 };
 
-const AppContainerStyle: React.CSSProperties = {
+const HeaderContainerStyle: React.CSSProperties = {
   padding: 14,
-  minWidth: 275,
+  textAlign: 'center',
+};
+
+const ListContainerStyle: React.CSSProperties = {
+  flex: 1,
+  padding: 14,
+  minWidth: 300,
   maxWidth: 400,
+  overflowY: 'auto',
 };
 
 export function CastPicker(props: CastPicker.Props) {
   return (
     <div style={FlexContainerStyle}>
-      <div style={AppContainerStyle}>
-        <Container textAlign="center">
-          <Header as='h1'>Cast Picker</Header>
-          <Button primary={true} onClick={props.startPick}>Pick</Button>
-        </Container>
+      <div style={HeaderContainerStyle}>
+        <Header as='h1'>Cast Picker</Header>
+        <Button primary={true} onClick={props.startPick}>Pick a random cast!</Button>
+      </div>
+      <div style={ListContainerStyle}>
         <CastList casts={props.generatedCasts} />
+      </div>
+      <div>
+        <Divider />
+        <span>This is a footer</span>
       </div>
     </div>
   );
