@@ -36,11 +36,13 @@ export function CastPicker(props: CastPicker.Props) {
   return (
     <div style={FlexContainerStyle}>
       <div style={HeaderContainerStyle}>
-        <Header as='h1'>Cast Picker</Header>
+        <Header as="h1">Cast Picker</Header>
         <Button primary={true} onClick={props.startPick}>Pick a random cast!</Button>
       </div>
-      <div style={ListContainerStyle}
-           ref={props.scrollListRef}>
+      <div
+          style={ListContainerStyle}
+          ref={props.scrollListRef}
+      >
         <CastList casts={props.generatedCasts} />
       </div>
       <div style={FooterContainerStyle}>

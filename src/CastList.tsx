@@ -5,9 +5,11 @@ import { Cast } from './Cast';
 
 export function CastList(props: CastList.Props) {
   return (
-    <Transition.Group as={List}
-                      animation="fade down"
-                      duration={750}>
+    <Transition.Group
+        as={List}
+        animation="fade down"
+        duration={750}
+    >
       {props.casts.map(ListItem)}
     </Transition.Group>
   );
