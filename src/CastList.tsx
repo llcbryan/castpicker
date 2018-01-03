@@ -49,7 +49,7 @@ function MultiCastListItem(props: ListItem.Props) {
   return (
     <List.Item key={props.key}>
       <Segment>
-        {phrase}<br />
+        <strong>{phrase}</strong><br />
         {props.casts.map((c, i) => <span key={i}>{c.toString()}<br /></span>)}
       </Segment>
     </List.Item>
