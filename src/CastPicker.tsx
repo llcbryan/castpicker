@@ -27,6 +27,11 @@ const ListContainerStyle: React.CSSProperties = {
   overflowY: 'auto',
 };
 
+const FooterContainerStyle: React.CSSProperties = {
+  paddingBottom: 14,
+  textAlign: 'center'
+};
+
 export function CastPicker(props: CastPicker.Props) {
   return (
     <div style={FlexContainerStyle}>
@@ -37,9 +42,9 @@ export function CastPicker(props: CastPicker.Props) {
       <div style={ListContainerStyle}>
         <CastList casts={props.generatedCasts} />
       </div>
-      <div>
+      <div style={FooterContainerStyle}>
         <Divider />
-        <span>This is a footer</span>
+        <Container>&copy; 2018</Container>
       </div>
     </div>
   );
