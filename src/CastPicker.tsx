@@ -1,17 +1,19 @@
 import * as React from 'react';
+import { Button, Container, Header } from 'semantic-ui-react';
 
 import { CastList, CastsListItem } from './CastList';
 
 export function CastPicker(props: CastPicker.Props) {
   return (
-    <div>
-      <h1>Cast Picker</h1>
-      <button onClick={props.startPick}>Pick</button>
-      <div>
-        Results:
+    <Container text={true}>
+      <Container textAlign="center">
+        <Header as='h1'>Cast Picker</Header>
+        <Button primary={true} onClick={props.startPick}>Pick</Button>
+      </Container>
+      <Container>
         <CastList casts={props.generatedCasts} />
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 

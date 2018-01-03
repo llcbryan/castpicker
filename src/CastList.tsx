@@ -1,12 +1,15 @@
 import * as React from 'react';
+import { List, Segment, Transition } from 'semantic-ui-react';
 
 import { Cast } from './Cast';
 
 export function CastList(props: CastList.Props) {
   return (
-    <ul>
+    <Transition.Group as={List}
+                      animation="fade down"
+                      duration={750}>
       {props.casts.map(ListItem)}
-    </ul>
+    </Transition.Group>
   );
 }
 
@@ -30,16 +33,24 @@ function ListItem(props: ListItem.Props) {
 }
 
 function SingleCastListItem(props: ListItem.Props) {
-  return <li key={props.key}>{props.casts[0].toString()}</li>;
+  return (
+    <List.Item key={props.key}>
+      <Segment>
+        {props.casts[0].toString()}
+      </Segment>
+    </List.Item>
+  );
 }
 
 function MultiCastListItem(props: ListItem.Props) {
   let phrase = (props.casts.length > 2) ? 'Combo casts!!!' : 'Dual casts!!!';
   return (
-    <li key={props.key}>
-      {phrase}<br />
-      {props.casts.map((c, i) => <span key={i}>{c.toString()}<br /></span>)}
-    </li>
+    <List.Item key={props.key}>
+      <Segment>
+        {phrase}<br />
+        {props.casts.map((c, i) => <span key={i}>{c.toString()}<br /></span>)}
+      </Segment>
+    </List.Item>
   );
 }
 
