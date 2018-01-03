@@ -39,7 +39,8 @@ export function CastPicker(props: CastPicker.Props) {
         <Header as='h1'>Cast Picker</Header>
         <Button primary={true} onClick={props.startPick}>Pick a random cast!</Button>
       </div>
-      <div style={ListContainerStyle}>
+      <div style={ListContainerStyle}
+           ref={props.scrollListRef}>
         <CastList casts={props.generatedCasts} />
       </div>
       <div style={FooterContainerStyle}>
@@ -54,6 +55,7 @@ export namespace CastPicker {
 
   export interface Props {
     startPick: () => void;
+    scrollListRef: React.Ref<HTMLElement>;
     generatedCasts: CastsListItem[];
   }
 }

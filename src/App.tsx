@@ -17,6 +17,8 @@ const nextKey = (() => {
 
 class App extends React.Component<{}, App.State> {
 
+  private scrollListRef: HTMLElement;
+
   constructor(props: {}) {
     super(props);
     this.state = { generatedCasts: [] };
@@ -27,6 +29,7 @@ class App extends React.Component<{}, App.State> {
       <CastPicker
                 generatedCasts={this.state.generatedCasts}
                 startPick={this.pick}
+                scrollListRef={this.scrollListRefCallback}
       />
     );
   }
@@ -43,7 +46,10 @@ class App extends React.Component<{}, App.State> {
         generatedCasts: newResults.slice(0, MAX_RESULTS)
       } as App.State;
     });
+    this.scrollListRef.scrollTop = 0;
   }
+
+  private scrollListRefCallback = (el: HTMLElement) => this.scrollListRef = el;
 }
 
 namespace App {
