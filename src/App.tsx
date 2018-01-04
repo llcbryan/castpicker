@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import { pickRandomCastSet } from './CastLogic';
