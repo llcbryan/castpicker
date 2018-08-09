@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import 'semantic-ui-css/semantic.min.css';
 
+import { Button } from 'semantic-ui-react';
+
 import { pickRandomCastSet } from './CastLogic';
 import { CastsListItem } from './CastList';
 import { CastPicker } from './CastPicker';
@@ -17,6 +19,7 @@ const nextKey = (() => {
 class App extends React.Component<{}, App.State> {
 
   private scrollListRef: HTMLElement;
+  private buttonRef: Button;
 
   constructor(props: {}) {
     super(props);
@@ -28,9 +31,14 @@ class App extends React.Component<{}, App.State> {
       <CastPicker
                 generatedCasts={this.state.generatedCasts}
                 startPick={this.pick}
+                buttonRef={this.buttonRefCallback}
                 scrollListRef={this.scrollListRefCallback}
       />
     );
+  }
+
+  public componentDidMount() {
+    this.buttonRef.focus();
   }
 
   private pick = () => {
@@ -48,6 +56,7 @@ class App extends React.Component<{}, App.State> {
     this.scrollListRef.scrollTop = 0;
   }
 
+  private buttonRefCallback = (el: Button) => this.buttonRef = el;
   private scrollListRefCallback = (el: HTMLElement) => this.scrollListRef = el;
 }
 
